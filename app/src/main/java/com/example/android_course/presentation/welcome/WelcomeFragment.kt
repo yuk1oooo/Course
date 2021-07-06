@@ -9,8 +9,9 @@ import com.example.android_course.databinding.FragmentWelcomeBinding
 class WelcomeFragment : Fragment() {
     private lateinit var binding: FragmentWelcomeBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.CloseButton.setOnClickListener { closeApplication() }
     }
 
     override fun onCreateView(
@@ -18,8 +19,6 @@ class WelcomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentWelcomeBinding.inflate(inflater, container, false)
-
-        binding.CloseButton.setOnClickListener { closeApplication() }
 
         return binding.root
     }

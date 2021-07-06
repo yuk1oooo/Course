@@ -16,8 +16,9 @@ class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.LoginButton.setOnClickListener { onClickLoginButton() }
     }
 
     override fun onCreateView(
@@ -25,7 +26,6 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
-        binding.LoginButton.setOnClickListener { onClickLoginButton() }
         return binding.root
     }
 
