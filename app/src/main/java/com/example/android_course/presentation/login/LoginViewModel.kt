@@ -3,10 +3,8 @@ package com.example.android_course.presentation.login
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.android_course.domain.LoginModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class LoginViewModel(private val loginModel: LoginModel): ViewModel() {
@@ -27,7 +25,7 @@ class LoginViewModel(private val loginModel: LoginModel): ViewModel() {
     }
 
     fun getValidation(){
-        CoroutineScope(Dispatchers.Main).launch {
+        viewModelScope.launch {
             val validation = loginModel.signIn(login.value!!, password.value!!)
             status.value = validation.status
             errorMessage.value = validation.errorMessage

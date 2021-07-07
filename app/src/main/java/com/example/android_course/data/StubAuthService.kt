@@ -6,11 +6,10 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
 class StubAuthService : IAuthService {
-    override suspend fun signIn(login: String, password: String): Pair<SignInResponse?, String?> {
-        return withContext(Dispatchers.IO) {
-            delay(1000)
-            if (!login.isNullOrEmpty() && login == password) Pair(SignInResponse(login, password), null)
-            else Pair(null, "wrong data")
-        }
+    override suspend fun signIn(login: String, password: String): SignInResponse {
+
+        delay(1000)
+        return if (!login.isNullOrEmpty() && login == password) SignInResponse(true, null)
+        else SignInResponse(false, "wrong data")
     }
 }
