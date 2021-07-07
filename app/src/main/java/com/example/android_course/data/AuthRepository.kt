@@ -5,12 +5,14 @@ import com.example.android_course.domain.SignInResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class AuthRepository(private val authService: StubAuthService): IAuthRepository {
+class AuthRepository(private val authService: IAuthService): IAuthRepository {
     override suspend fun signIn(login: String, password: String): SignInResult {
         val serviceSignIn = authService.signIn(login, password)
-        return if (serviceSignIn.success && serviceSignIn.error == null)
+        return if (serviceSignIn.success && serviceSignIn.error == null) {
             SignInResult(true, null)
-        else
+        }
+        else {
             SignInResult(false, serviceSignIn.error)
+        }
     }
 }

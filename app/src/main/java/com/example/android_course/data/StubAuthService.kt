@@ -9,7 +9,11 @@ class StubAuthService : IAuthService {
     override suspend fun signIn(login: String, password: String): SignInResponse {
 
         delay(1000)
-        return if (!login.isNullOrEmpty() && login == password) SignInResponse(true, null)
-        else SignInResponse(false, "wrong data")
+        return if (!login.isNullOrEmpty() && login == password) {
+            SignInResponse(true, null)
+        }
+        else {
+            SignInResponse(false, "wrong data")
+        }
     }
 }
